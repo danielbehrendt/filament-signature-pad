@@ -42,6 +42,19 @@ document.addEventListener('alpine:init', () => {
                     this.signaturePad.addEventListener("afterUpdateStroke", () => {
                         // console.log("Signature updated");
                     }, {once: false});
+
+                    document.querySelector('button > svg').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    });
+
+                    window.addEventListener('click', (e) => {
+                        const hasClass = e.target.classList.contains('has-signature-canvas-modal');
+                        if (hasClass) {
+                            setTimeout(() => this.resizeCanvas(), 500);
+                        }
+                    });
+                    
                 }
 
             },
